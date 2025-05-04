@@ -1,37 +1,40 @@
 package com.example.demo.banque.model;
 
-public class Compte {
-    private static int compteur = 0;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "compte")
+public class Compte {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String titulaire;
+
     private double solde;
 
-    public Compte() {
-        this.id = ++compteur;
-    }
+    // Constructeurs
+    public Compte() {}
 
     public Compte(String titulaire, double solde) {
-        this.id = ++compteur;
         this.titulaire = titulaire;
         this.solde = solde;
-    }
-
-   
-    public Compte(int id, String titulaire, double solde) {
-        this.id = id;
-        this.titulaire = titulaire;
-        this.solde = solde;
-        if (id > compteur) {
-            compteur = id; // Pour éviter des doublons d’ID plus tard
-        }
     }
 
     // Getters & setters
     public int getId() { return id; }
+
     public String getTitulaire() { return titulaire; }
+
     public void setTitulaire(String titulaire) { this.titulaire = titulaire; }
+
     public double getSolde() { return solde; }
+
     public void setSolde(double solde) { this.solde = solde; }
 
     // Méthodes utiles
@@ -48,8 +51,8 @@ public class Compte {
         }
         return false;
     }
-
 }
+
 
 
     

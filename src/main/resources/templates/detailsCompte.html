@@ -47,6 +47,24 @@
         <button type="submit" class="btn btn-danger">Retirer</button>
     </div>
 </form>
+<h3>Historique des transactions</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Montant</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.type}"></td>
+            <td th:text="${transaction.montant}"></td>
+            <td th:text="${#temporals.format(transaction.date, 'dd/MM/yyyy HH:mm')}"></td>
+        </tr>
+    </tbody>
+</table>
+
 
 </body>
 </html>
