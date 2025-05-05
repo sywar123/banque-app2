@@ -31,7 +31,7 @@ public class Transaction {
         this.date = LocalDateTime.now();
     }
 
-    // Getters et Setters
+    
     public int getId() { return id; }
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }

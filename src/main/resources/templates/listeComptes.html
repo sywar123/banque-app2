@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Liste des Comptes</title>
@@ -12,10 +13,15 @@
     <a class="navbar-brand" href="/comptes">Banque</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+        <!-- Lien visible uniquement pour ADMIN -->
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
           <a class="nav-link" href="/ajouter">Ajouter un compte</a>
         </li>
       </ul>
+    </div>
+    <div class="d-flex text-white">
+      <span class="me-3">Connecté en tant que : <strong sec:authentication="name"></strong></span>
+      <span>Rôle : <strong sec:authentication="principal.authorities"></strong></span>
     </div>
   </div>
 </nav>
@@ -27,7 +33,7 @@
         <tr>
             <th>ID</th>
             <th>Titulaire</th>
-            <th>Solde </th>
+            <th>Solde</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -45,4 +51,3 @@
 
 </body>
 </html>
-
