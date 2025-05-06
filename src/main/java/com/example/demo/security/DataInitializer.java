@@ -18,7 +18,7 @@ public class DataInitializer {
                 Utilisateur admin = new Utilisateur();
                 admin.setUsername("admin");
                 admin.setPassword(passwordEncoder.encode("1234"));
-                admin.setRole("ROLE_ADMIN ");
+                admin.setRole("ROLE_ADMIN");
                 admin.setEmail("admin@banque.com");
                 utilisateurRepository.save(admin);
                 
@@ -32,7 +32,7 @@ public class DataInitializer {
                 Utilisateur user = new Utilisateur();
                 user.setUsername("Siwar");
                 user.setPassword(passwordEncoder.encode("userpass"));
-                user.setRole(" ROLE_USER");
+                user.setRole("ROLE_USER");
                 user.setEmail("siwar@banque.com");
                 utilisateurRepository.save(user);
                 
