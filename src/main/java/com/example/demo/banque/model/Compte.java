@@ -20,8 +20,18 @@ public class Compte {
     private double solde;
     @Column (unique = true)
     private String email;
+    private String photo;
 
-    public String getEmail() {
+ // + getter/setter
+ public String getPhoto() {
+     return photo;
+ }
+ public void setPhoto(String photo) {
+     this.photo = photo;
+ }
+
+
+	public String getEmail() {
 		return email;
 	}
 

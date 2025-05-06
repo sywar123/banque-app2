@@ -35,7 +35,6 @@ public class Securityconfig {
 
                 // Toute autre requête est refusée
                 .anyRequest().permitAll()
-
             )
             .formLogin(form -> form
                 .loginPage("/login")

@@ -11,7 +11,13 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -39,10 +45,24 @@ public class BanqueController {
     }
 
     @PostMapping("/ajouter")
-    public String ajouterCompte(@ModelAttribute Compte compte) {
+    public String ajouterCompte(@ModelAttribute Compte compte , @RequestParam("photoFile") MultipartFile file) {
+    	 // 1. Sauvegarde de l'image si fournie
+        if (!file.isEmpty()) {
+            try {
+                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                Path uploadPath = Paths.get("uploads"); // dossier déjà existant
+                Files.copy(file.getInputStream(), uploadPath.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
+                compte.setPhoto(fileName);
+            } catch (IOException e) {
+                e.printStackTrace(); // journalisation de l'erreur
+            }
+        }
+
+        // 2. Enregistrement en base
         compteRepository.save(compte);
-       emailService.envoyerEmail(compte.getEmail(), "Bienvenue", "Votre compte a bien été créé !");
-            
+
+        // 3. Email de confirmation
+        emailService.envoyerEmail(compte.getEmail(), "Bienvenue", "Votre compte a bien été créé !");
         
         return "redirect:/comptes";
     }
@@ -137,4 +157,6 @@ public class BanqueController {
             return "Échec d'envoi: " + e.getMessage();
         }
     }
-}
+   
+    }
+

@@ -22,7 +22,7 @@
 
 <h2>Ajouter un Nouveau Compte</h2>
 
-<form th:action="@{/ajouter}" th:object="${compte}" method="post" class="mt-3">
+<form th:action="@{/ajouter}" th:object="${compte}" method="post" enctype="multipart/form-data" class="mt-3">
     <div class="mb-3">
         <label class="form-label">Titulaire</label>
         <input type="text" th:field="*{titulaire}" class="form-control" required />
@@ -35,6 +35,10 @@
 	    <label>Email du titulaire</label>
 	    <input type="email" name="emailTitulaire"  th:field="*{email}" required />
 	</div>
+	<div class="mb-3">
+	       <label class="form-label">Photo</label>
+	       <input type="file" name="photoFile" class="form-control" />
+	   </div>
     <button type="submit" class="btn btn-success">Ajouter</button>
 </form>
 
