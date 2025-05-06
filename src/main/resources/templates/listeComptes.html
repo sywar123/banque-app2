@@ -44,6 +44,13 @@
             <td th:text="${compte.solde}"></td>
             <td>
                 <a th:href="@{/details/{id}(id=${compte.id})}" class="btn btn-info btn-sm">Détails</a>
+                <!-- Bouton Supprimer visible uniquement pour ADMIN -->
+                <a th:href="@{/supprimer/{id}(id=${compte.id})}"
+                   sec:authorize="hasRole('ADMIN')"
+                   class="btn btn-danger btn-sm ms-2"
+                   onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce compte ?');">
+                    Supprimer
+                </a>
             </td>
         </tr>
     </tbody>
