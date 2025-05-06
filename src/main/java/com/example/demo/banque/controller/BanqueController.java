@@ -125,6 +125,11 @@ public class BanqueController {
         }
         return "redirect:/comptes";
     }
+    @GetMapping("/supprimer/{id}")
+    public String supprimerCompte(@PathVariable int id) {
+        compteRepository.deleteById(id);
+        return "redirect:/comptes";
+    }
 
 
     @GetMapping("/")

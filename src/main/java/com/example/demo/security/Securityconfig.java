@@ -24,7 +24,7 @@ public class Securityconfig {
         http
             .authorizeHttpRequests(auth -> auth
                 // Accès public
-                .requestMatchers("/", "/index.html", "/login", "/css/**", "/js/**", "/images/**" ).permitAll()
+                .requestMatchers("/", "/index.html", "/login", "/css/**", "/js/**", "/images/**").permitAll()
 
                 // Accès réservé aux administrateurs
                 .requestMatchers("/ajouter", "/depot/**", "/retrait/**").hasAuthority("ROLE_ADMIN")
