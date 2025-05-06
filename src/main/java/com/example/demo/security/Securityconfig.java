@@ -23,16 +23,17 @@ public class Securityconfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                // ressources publiques
+                // Accès public
                 .requestMatchers("/", "/index.html", "/login", "/css/**", "/js/**", "/images/**").permitAll()
 
-                // actions réservées à ADMIN
-                .requestMatchers("/ajouter", "/depot/**", "/retrait/**").hasRole("ADMIN")
+                // Accès réservé aux administrateurs
+                .requestMatchers("/ajouter", "/depot/**", "/retrait/**").hasAuthority("ROLE_ADMIN")
 
-                // accessible à tout utilisateur authentifié
+
+                // Accès à tout utilisateur authentifié
                 .requestMatchers("/comptes", "/details/**").authenticated()
 
-                // tout autre accès refusé
+                // Toute autre requête est refusée
                 .anyRequest().denyAll()
             )
             .formLogin(form -> form

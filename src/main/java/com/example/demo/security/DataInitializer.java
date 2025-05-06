@@ -18,8 +18,9 @@ public class DataInitializer {
                 Utilisateur admin = new Utilisateur();
                 admin.setUsername("admin");
                 admin.setPassword(passwordEncoder.encode("1234"));
-                admin.setRole("ROLE_ADMIN");
+                admin.setRole("ROLE_ADMIN ");
                 utilisateurRepository.save(admin);
+                
                 System.out.println("Utilisateur admin ajouté !");
             } else {
                 System.out.println("Utilisateur admin déjà existant.");
@@ -30,8 +31,9 @@ public class DataInitializer {
                 Utilisateur user = new Utilisateur();
                 user.setUsername("Siwar");
                 user.setPassword(passwordEncoder.encode("userpass"));
-                user.setRole("ROLE_USER");
+                user.setRole(" ROLE_USER");
                 utilisateurRepository.save(user);
+                
                 System.out.println("Utilisateur Siwar ajouté !");
             } else {
                 System.out.println("Utilisateur Siwar déjà existant.");

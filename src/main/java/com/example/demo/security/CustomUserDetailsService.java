@@ -9,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -23,11 +22,20 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Utilisateur non trouvé");
         }
 
+        // Ici, on ajoute le préfixe "ROLE_" au rôle stocké s’il n’est pas encore dans la base
+        String roleWithPrefix = utilisateur.getRole().startsWith("ROLE_")
+            ? utilisateur.getRole()
+            : "ROLE_" + utilisateur.getRole();
+
         return new User(
             utilisateur.getUsername(),
             utilisateur.getPassword(),
-            Collections.singleton(new SimpleGrantedAuthority(utilisateur.getRole()))
+            Collections.singleton(new SimpleGrantedAuthority(roleWithPrefix))
         );
     }
 }
+
+
+
+
 
