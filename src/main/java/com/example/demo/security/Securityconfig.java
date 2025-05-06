@@ -34,7 +34,8 @@ public class Securityconfig {
                 .requestMatchers("/comptes", "/details/**").authenticated()
 
                 // Toute autre requête est refusée
-                .anyRequest().denyAll()
+                .anyRequest().permitAll()
+
             )
             .formLogin(form -> form
                 .loginPage("/login")
