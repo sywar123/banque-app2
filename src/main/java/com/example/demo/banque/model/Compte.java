@@ -1,5 +1,6 @@
 package com.example.demo.banque.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +18,24 @@ public class Compte {
     private String titulaire;
 
     private double solde;
+    @Column (unique = true)
+    private String email;
+
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
     // Constructeurs
     public Compte() {}
 
-    public Compte(String titulaire, double solde) {
+    public Compte(String titulaire, double solde ,String email ) {
         this.titulaire = titulaire;
         this.solde = solde;
+        this.email= email ;
     }
 
     // Getters & setters
